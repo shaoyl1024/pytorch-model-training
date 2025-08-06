@@ -1,32 +1,44 @@
 # Display Advertising CTR Prediction
 
-## Project Overview
+# Project Overview
 
-This project focuses on predicting the Click-Through Rate (CTR) for display advertisements using the Criteo Display
-Advertising Challenge Dataset. The goal is to build effective predictive models that can estimate the probability of a
-user clicking on a displayed ad, which is crucial for optimizing ad performance, user experience, and advertising
-revenue.
+This project aims to predict the Click-Through Rate (CTR) of display advertisements using the Criteo Display Advertising
+Challenge Dataset. The core objective is to develop robust predictive models that estimate the probability of a user
+clicking on a displayed ad. Accurate CTR prediction is critical for optimizing ad delivery, enhancing user experience,
+and maximizing advertising revenue for platforms and advertisers.
 
-## Dataset Information
+# Project Structure
 
-### Data Source
+```text
+ctr_prediction/
+├── notebooks/           # Jupyter Notebooks for interactive data analysis and experimentation
+├── data/                # Project data (strict separation of raw and processed data)
+├── src/                 # Reusable source code and utility functions
+├── figures/             # Generated visualizations and charts
+├── models/              # Trained model artifacts (serialized models)
+├── requirements.txt     # Explicit list of project dependencies with version pins
+├── .gitignore           # Files/folders to exclude from version control (large data, env files)
+└── README.md            # Project documentation (this file)
+```
 
-The project utilizes the Criteo Display Advertising Challenge Dataset, which contains anonymized click-through data from
-Criteo's advertising platform. This dataset is widely used in the machine learning community for benchmarking CTR
-prediction models.
+# Dataset Information
 
-### Dataset Characteristics
+## Source
 
-* **Time Period:** The data covers 1 week of advertising interactions.
+The dataset is derived from the [Criteo Display Advertising Challenge](https://ailab.criteo.com/ressources/), a public
+benchmark dataset widely used for advancing research on CTR prediction and large-scale machine learning.
 
-* **Format:** Structured tabular data with labeled examples (supervised learning setup).
-* **Anonymization:** All personally identifiable information (PII) and sensitive data have been removed. Categorical
-  features are hashed to ensure privacy, meaning original values cannot be reconstructed while retaining their
-  predictive value.
-* **Size:** The original full dataset includes approximately 45 million training examples, making it a large-scale
-  dataset suitable for testing scalable machine learning approaches.
+## Key Characteristics
 
-### Data Fields
+* **Time Coverage:** The dataset includes 7 days of ad impression data from Criteo's advertising platform.
+* **Scale:** The full training set contains approximately 45 million examples, making it suitable for testing
+  scalability of machine learning pipelines.
+* **Anonymization:** All features are anonymized to protect user privacy. Categorical features are hashed to prevent
+  reconstruction of sensitive information (e.g., user IDs, ad IDs), while retaining predictive value.
+  Supervised Learning Setup: Each example is labeled with a binary indicator of whether a click occurred, enabling
+  supervised classification.
+
+## Data Fields
 
 The dataset comprises the following anonymized features:
 
@@ -41,20 +53,44 @@ The dataset comprises the following anonymized features:
     * C1 to C26: Hashed categorical features with large cardinalities. These could correspond to attributes like user
       IDs, ad IDs, device types, or contextual categories, but their original meanings are anonymized via hashing.
 
-> Note: The anonymization process ensures that all features are privacy-preserving, with no ability to reverse-engineer
-> personal or sensitive information. This allows for safe experimentation while maintaining the dataset's utility for
-> predictive modeling.
+# Key Objectives
 
-## Key Objectives
+1. **Develop High-Performance CTR Models:** Build and compare machine learning models (e.g., logistic regression,
+   gradient boosting, deep learning) to achieve accurate CTR prediction.
+2. **Address Large-Scale Data Challenges:** Implement efficient preprocessing and modeling pipelines to handle
+   high-dimensional, large-scale tabular data with mixed feature types (numerical + categorical).
+3. **Feature Engineering for CTR Prediction:** Explore feature transformation techniques tailored to CTR prediction (
+   e.g., target encoding for categorical features, interaction features) to enhance model performance.
+4. **Rigorous Evaluation:** Assess models using industry-standard metrics (AUC-ROC, log loss, precision-recall) and
+   analyze performance across subpopulations to ensure robustness.
 
-* Develop machine learning models to predict the likelihood of ad clicks (CTR).
-* Evaluate model performance using industry-standard metrics for classification tasks.
-* Explore feature engineering and preprocessing techniques suitable for large-scale tabular data with mixed numerical
-  and categorical features.
+# Usage Guidelines
 
-## Usage
+## Environment Setup
 
-Details on data preprocessing, model training, and evaluation can be found in the project's codebase. The dataset can be
-obtained from the official Criteo Display Advertising Challenge sources (please refer to the original dataset
-documentation for access).
+1. Clone the repository and navigate to the project root.
+2. Install dependencies using:
+
+```text
+pip install -r requirements.txt
+```
+
+## Data Preparation
+
+* The raw dataset (train.txt) should be placed in data/raw/.
+* Run notebooks/01_data_loading.ipynb to validate and load data, followed by 02_exploratory_analysis.ipynb for EDA.
+
+## Model Development
+
+* Follow the notebooks in sequence (03 → 04 → 05) to execute feature engineering, model training, and evaluation.
+* Reusable logic in src/ can be imported into notebooks for consistent implementation.
+
+# Notes
+
+* **Data Privacy:** The dataset’s anonymization ensures compliance with privacy standards (e.g., GDPR). No sensitive or
+  personally identifiable information (PII) is present.
+* **Reproducibility:** All code and workflows are designed for reproducibility. Dependencies are pinned in
+  requirements.txt, and raw data remains immutable to ensure consistent results.
+* **Scalability:** The project structure supports scaling to larger datasets by separating data loading/processing logic
+  from analysis, enabling efficient handling of big data.
 
