@@ -405,11 +405,11 @@ def load_criteo_data(filepath: str, cols: List[str], max_rows: Optional[int] = N
 def main():
     # 配置参数（可根据实际环境调整）
     config = {
-        'data_path': '../../data/raw/train.txt',  # Criteo训练数据路径
-        'test_path': '../../data/raw/test.txt',  # Criteo测试数据路径
-        'preprocessor_path': 'criteo_preprocessor.pkl',  # 预处理器保存路径
-        'onnx_model_path': 'criteo_ctr_model.onnx',  # ONNX模型保存路径
-        'max_train_rows': 10000000,  # 训练数据最大行数（按需调整）
+        'data_path': '/Users/charles/Workspace/pytorch-prediction/pytorch-model-training/data/raw/train.txt',  # Criteo训练数据路径
+        'test_path': '/Users/charles/Workspace/pytorch-prediction/pytorch-model-training/data/raw/test.txt',  # Criteo测试数据路径
+        'preprocessor_path': './criteo_preprocessor.pkl',  # 预处理器保存路径
+        'onnx_model_path': './criteo_ctr_model.onnx',  # ONNX模型保存路径
+        'max_train_rows': 10000,  # 训练数据最大行数（按需调整）
         'test_size': 0.2,  # 验证集比例
         'batch_size': 256,  # 训练批量大小
         'epochs': 10,  # 训练轮数
