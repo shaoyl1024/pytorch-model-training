@@ -1,5 +1,5 @@
 .idea
 .DS_Store
 data
-/figures
 /src/figures/
+/src/features/
